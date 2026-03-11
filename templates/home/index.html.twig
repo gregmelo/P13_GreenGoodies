@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Green Goodies{% endblock %}
+
+{% block body %}
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-text-inner">
+                    <h1>Bienvenue</h1>
+                    <p>Découvrez notre univers de produits durables et éthiques pour une consommation responsable<br><br>
+                    Retrouvez des articles d’hygiène & beauté, des accessoires & boissons et du prêt 
+                    à porter</p>
+                </div>
+            </div>
+            <img src="{{ asset('assets/hero.webp') }}" alt="Hero Image">
+        </div>
+    </section>
+
+    <section class="products-container">
+        <h2>Nos produits</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="{{ asset('assets/products/kit_hygiene_recyclable.webp') }}" alt="Kit d’hygiène recyclable">
+                <div class="card-text">
+                    <h3>Kit d’hygiène recyclable</h3>
+                    <p>Pour une salle de bain éco-friendly</p>
+                    <p class="price">24,99€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/shot_tropical.webp') }}" alt="Shot tropical">
+                <div class="card-text">
+                    <h3>Shot tropical</h3>
+                    <p>Fruits frais, pressés à froid</p>
+                    <p class="price">4,50€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/gourde_bois.webp') }}" alt="Gourde en bois">
+                <div class="card-text">
+                    <h3>Gourde en bois</h3>
+                    <p>50cl, bois d'olivier</p>
+                    <p class="price">16,90€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/disques_demaquillants.webp') }}" alt="Disques Démaquillants x3">
+                <div class="card-text">
+                    <h3>Disques Démaquillants x3</h3>
+                    <p>Solution efficace pour vous démaquiller en douceur</p>
+                    <p class="price">19,90€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/bougie_lavande_patchouli.webp') }}" alt="Bougie Lavande & Patchouli">
+                <div class="card-text">
+                    <h3>Bougie Lavande & Patchouli</h3>
+                    <p>Cire naturelle</p>
+                    <p class="price">32€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/brosse_a_dent.webp') }}" alt="Brosse à dent">
+                <div class="card-text">
+                    <h3>Brosse à dent</h3>
+                    <p>Bois de hêtre rouge issu de forêts gérées durablement</p>
+                    <p class="price">5,40€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/kit_couvert_bois.webp') }}" alt="Kit de couverts en bois">
+                <div class="card-text">
+                    <h3>Kit de couverts en bois</h3>
+                    <p>Revêtement Bio en olivier & sac de transport</p>
+                    <p class="price">12,30€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/deodorant_bio.webp') }}" alt="Déodorant Bio">
+                <div class="card-text">
+                    <h3>Nécessaire, déodorant Bio</h3>
+                    <p>50ml déodorant à l’eucalyptus</p>
+                    <p class="price">8,50€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+            <div class="product-card">
+                <img src="{{ asset('assets/products/savon_bio.webp') }}" alt="Savon Bio">
+                <div class="card-text">
+                    <h3>Savon Bio</h3>
+                    <p>Thé, Orange & Girofle</p>
+                    <p class="price">18,90€</p>
+                </div>
+                <a href="#" class="card-btn">Voir le produit</a>
+            </div>
+        </div>
+    </section>
+    <section class="ethos">
+        <div class="conviction">
+            <div class="conviction-text">
+                <h3>Notre conviction</h3>
+                <p>
+                    Chez GreenGoodies, nous croyons en un monde où le commerce peut être synonyme de bien-être 
+                    pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse 
+                    de produits qui allient qualité, durabilité et éthique
+                </p>
+            </div>
+            <img src="{{ asset('assets/register.webp')}}" alt="Image d'illustration de fleurs">
+        </div>
+        <div class="values">
+            <img src="{{ asset('assets/values.webp')}}" alt="Image d'illustration de sacs plastiques">
+            <div class="values-text">
+                <h3>Nos valeurs</h3>
+                <p>
+                    Durabilité : Nous sélectionnons soigneusement des produits qui respectent l'environnement et favorisent la durabilité.
+                    Éthique : Nous nous engageons à travailler avec des partenaires et des fournisseurs qui partagent nos valeurs éthiques.
+                    Écologie : Nous encourageons des pratiques respectueuses de l'écosystème et privilégions les matériaux écologiques.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

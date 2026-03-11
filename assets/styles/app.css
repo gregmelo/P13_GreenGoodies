@@ -1,3 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+
 body {
-    background-color: skyblue;
+    margin: 0;
+    padding: 0;
+    color: #333333;
+    font-family: "Inter", sans-serif;
+    background-color: #FFFDF7;
+}
+
+/* Header */
+header {
+    padding: 31px 100px;
+    background-color: #fffdf7;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main-nav ul {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 53px;
+}
+.main-nav li {
+    list-style: none;
+}
+.main-nav a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.main-nav a:hover {
+    color: #666666;
+    font-weight: 500;
+}
+
+/* Hero */
+.hero {
+    background-color: #E8F0E3;
+    height: 751px;
+    display: flex;
+    align-items: stretch;
+}
+.hero-content {
+    display: flex;
+    width: 100%;
+}
+.hero-text {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hero-text-inner {
+    text-align: left;
+    max-width: 362px;
+    width: 100%;
+}
+.hero-text h1 {
+    margin: 0 0 38px;
+    font-size: 64px;
+    font-weight: 500;
+}
+.hero-text p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 100%;
+    width: 362px;
+}
+.hero img {
+    flex: 0 0 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+    display: block;
+}
+
+/* Products */
+.products-container{
+    padding: 0;
+}
+
+.products-container h2 {
+    margin: 0;
+    padding: 37px 0 37px 100px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: medium;
+    font-size: 14px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 474px;
+    display: block;
+    object-fit: cover;
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0;
+    gap: 8px;
+
+}
+
+.card-text h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+    color: black;
+    font-style: semibold;
+}
+
+.card-text p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    font-style: regular;
+}
+
+.card-text .price {
+    color: #333333;
+    margin-top: 12px;
+}
+
+.card-btn {
+    height: 77px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* Ethos */
+.ethos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Conviction and Values */
+.conviction,
+.values {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.conviction-text,
+.values-text {
+    padding: 40px;
+}
+
+.conviction-text h3,
+.values-text h3 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+    font-style: medium;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.conviction-text p,
+.values-text p {
+    margin: 0;
+    font-weight: 300;
+    font-size: 14px;
+    color: #333333;
+    font-style: light;
+}
+
+.conviction img,
+.values img {
+    width: 487px;
+}
+
+/* Conviction */
+.conviction {
+    background-color: #EBE3D3;
+}
+
+.conviction p {
+    max-width: 425px;
+}
+
+/* Values */
+.values {
+    background-color: #E8F0E3;
+}
+
+.values p {
+    max-width: 465px;
+}
+
+/* Footer */
+footer {
+    background-color: #fffdf7;
+    height: 81px;
+    padding-right: 89px;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
