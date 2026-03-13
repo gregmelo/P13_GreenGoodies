@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
 @import './_product.css';
+@import './_login-register.css';
 
 body {
     margin: 0;
@@ -231,7 +232,8 @@ header {
 
 /* Footer */
 footer {
-    background-color: #f6f5f0;
+    background-color: white;
+    border: solid 1px #F6F5F0;
     height: 81px;
     padding-right: 89px;
     font-size: 14px;

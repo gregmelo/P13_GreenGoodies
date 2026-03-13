@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - Green Goodies{% endblock %}
+
+{% block body %}
+    <section class="login-page">
+        <div class="login-container">
+            <div class="login-illustration">
+                {# Tu mettras ton image ici plus tard, par exemple : #}
+                <img src="{{ asset('assets/login.webp') }}" alt="Illustration connexion">
+            </div>
+
+            <div class="login-form-wrapper">
+                <h1>Connexion</h1>
+
+                <form class="login-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+
+                    <button type="submit" class="login-submit">
+                        Se connecter
+                    </button>
+                    <p><a href="#">Pas encore de compte ? S’inscrire</a></p>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
