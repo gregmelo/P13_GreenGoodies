@@ -20,7 +20,20 @@
     <section class="products-container" id="products">
         <h2>Nos produits</h2>
         <div class="products-grid">
-            <div class="product-card">
+            {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ asset('assets/products/' ~ product.picture) }}" alt="{{ product.name }}">
+                    <div class="card-text">
+                        <h3>{{ product.name }}</h3>
+                        <p class="description">{{ product.shortDescription }}</p>
+                        <p class="price">
+                            {{ product.price|number_format(2, ',', '') }}€
+                        </p>
+                    </div>
+                    <a href="{{ path('product_show', { id: product.id }) }}" class="card-btn">Voir le produit</a>
+                </div>
+            {% endfor %}
+            {# <div class="product-card">
                 <img src="{{ asset('assets/products/kit_hygiene_recyclable.webp') }}" alt="Kit d’hygiène recyclable">
                 <div class="card-text">
                     <h3>Kit d’hygiène recyclable</h3>
@@ -100,7 +113,7 @@
                     <p class="price">18,90€</p>
                 </div>
                 <a href="{{ path('product_show') }}" class="card-btn">Voir le produit</a>
-            </div>
+            </div> #}
         </div>
     </section>
     <section class="ethos">
