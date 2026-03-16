@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
 @import './_product.css';
 @import './_login-register.css';
+@import './_cart.css';
 
 body {
     margin: 0;

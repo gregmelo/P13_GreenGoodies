@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier - Green Goodies{% endblock %}
+
+{% block body %}
+    <section class="cart-page">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1>Mon panier</h1>
+                <a href="#" class="cart-clear">x Vider le panier</a>
+            </div>
+            <div class="cart-items">
+                <article class="cart-item">
+                    <div class="cart-item-image">
+                        <img src="{{ asset('assets/products/savon_bio.webp') }}" alt="Savon Bio">
+                    </div>
+                    <div class="cart-item-info">
+                        <h2 class="cart-item-title">Savon Bio</h2>
+                        <p class="cart-item-quantity">Quantité : 1</p>
+                        <p class="cart-item-price">12,00 €</p>
+                    </div>
+                </article>
+
+                <article class="cart-item">
+                    <div class="cart-item-image">
+                        <img src="{{ asset('assets/products/gourde_bois.webp') }}" alt="Gourde en bois">
+                    </div>
+                    <div class="cart-item-info">
+                        <h2 class="cart-item-title">Gourde en bois</h2>
+                        <p class="cart-item-quantity">Quantité : 1</p>
+                        <p class="cart-item-price">15,00 €</p>
+                    </div>
+                </article>
+
+                {# Tu pourras plus tard boucler ici sur les vrais produits du panier #}
+            </div>
+
+            <div class="cart-summary">
+                <div class="cart-summary-row total">
+                    <span>Total panier</span>
+                    <span>33,50 €</span>
+                </div>
+                <div class="cart-summary-row shipping-costs">
+                    <span>Frais de livraison</span>
+                    <span>4,50 €</span>
+                </div>
+            </div>
+
+            <div class="cart-actions">
+                <button class="cart-validate">
+                    Valider la commande
+                </button>
+            </div>
+        </div>
+    </section>
+{% endblock %}
