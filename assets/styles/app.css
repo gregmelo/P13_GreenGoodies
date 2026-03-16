@@ -2,6 +2,7 @@
 @import './_product.css';
 @import './_login-register.css';
 @import './_cart.css';
+@import './_account.css';
 
 body {
     margin: 0;

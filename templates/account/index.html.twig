@@ -1,20 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %}Mon compte - Green Goodies{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <section class="account-page">
+        <div class="account-container">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <h1 class="account-title">Mon compte</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/grego/Desktop/php_symfony/P13_GreenGoodies/src/Controller/AccountController.php</code></li>
-        <li>Your template at <code>C:/Users/grego/Desktop/php_symfony/P13_GreenGoodies/templates/account/index.html.twig</code></li>
-    </ul>
-</div>
+            <section class="account-card orders-card">
+                <h2 class="account-card-title">Mes commandes</h2>
+                <table class="account-orders-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Date</th>
+                            <th>Prix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>01/01/2024</td>
+                            <td>185,50€</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>01/01/2024</td>
+                            <td>185,50€</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>01/01/2024</td>
+                            <td>185,50€</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>01/01/2024</td>
+                            <td>185,50€</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>01/01/2024</td>
+                            <td>185,50€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="account-card api-card">
+                <h2 class="account-card-title">Mon accès API</h2>
+                <button class="account-button account-button--primary">
+                    Activer mon accès API
+                </button>
+            </section>
+
+            <section class="account-card delete-card">
+                <button class="account-button account-button--danger">
+                    Supprimer mon compte
+                </button>
+            </section>
+
+        </div>
+    </section>
 {% endblock %}
