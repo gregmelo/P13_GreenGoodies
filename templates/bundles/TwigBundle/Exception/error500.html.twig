@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur serveur - Green Goodies{% endblock %}
+
+{% block body %}
+    <section class="error-page">
+        <div class="error-container">
+            <h1>Une erreur est survenue.</h1>
+            <p>
+                Nous avons rencontré un problème lors du traitement de votre demande.
+            </p>
+            <p>
+                Vous pouvez réessayer dans quelques instants ou revenir à l’accueil.
+            </p>
+            <p>
+                <a href="{{ path('app_home') }}" class="error-link">
+                    Revenir à l’accueil
+                </a>
+            </p>
+        </div>
+    </section>
+{% endblock %}

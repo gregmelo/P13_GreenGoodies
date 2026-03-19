@@ -17,7 +17,15 @@
                 <p class="long-description">
                     {{ product.fullDescription|nl2br }}
                 </p>
-                <a href="#" class="product-btn">Ajouter au panier</a>
+                {% if app.user %}
+                    <a href="{{ path('app_cart_add', { id: product.id }) }}" class="product-btn">
+                        Ajouter au panier
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="product-btn">
+                        Connectez-vous pour ajouter au panier
+                    </a>
+                {% endif %}
             </div>
         </div>
     </section>

@@ -3,64 +3,62 @@
 {% block title %}Mon compte - Green Goodies{% endblock %}
 
 {% block body %}
-    <section class="account-page">
-        <div class="account-container">
+<section class="account-page">
+    <div class="account-container">
 
-            <h1 class="account-title">Mon compte</h1>
+        <h1 class="account-title">Mon compte</h1>
 
-            <section class="account-card orders-card">
-                <h2 class="account-card-title">Mes commandes</h2>
-                <table class="account-orders-table">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Date</th>
-                            <th>Prix</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>01/01/2024</td>
-                            <td>185,50€</td>
-                        </tr>
-                        <tr>
-                            <td>01</td>
-                            <td>01/01/2024</td>
-                            <td>185,50€</td>
-                        </tr>
-                        <tr>
-                            <td>01</td>
-                            <td>01/01/2024</td>
-                            <td>185,50€</td>
-                        </tr>
-                        <tr>
-                            <td>01</td>
-                            <td>01/01/2024</td>
-                            <td>185,50€</td>
-                        </tr>
-                        <tr>
-                            <td>01</td>
-                            <td>01/01/2024</td>
-                            <td>185,50€</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+        <section class="account-card orders-card">
+            <h2 class="account-card-title">Mes commandes</h2>
+            <table class="account-orders-table">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Date</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if orders is empty %}
+                    <tr>
+                        <td colspan="3">Vous n'avez pas encore de commande.</td>
+                    </tr>
+                    {% else %}
+                        {% for order in orders %}
+                            <tr>
+                                <td>{{ order.orderNumber }}</td>
+                                <td>{{ order.createdAt|date('d/m/Y') }}</td>
+                                <td>{{ order.totalPrice|number_format(2, ',', ' ') }}€</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </section>
 
-            <section class="account-card api-card">
-                <h2 class="account-card-title">Mon accès API</h2>
-                <button class="account-button account-button--primary">
-                    Activer mon accès API
-                </button>
-            </section>
+        <section class="account-card api-card">
+            <h2 class="account-card-title">Mon accès API</h2>
+                <form action="{{ path('app_account_api_toggle') }}" method="post">
+                    {% if app.user and app.user.apiAccess %}
+                        <button type="submit" class="account-button account-button--primary">
+                            Désactiver mon accès API
+                        </button>
+                    {% else %}
+                        <button type="submit" class="account-button account-button--primary">
+                            Activer mon accès API
+                        </button>
+                    {% endif %}
+                </form>
+        </section>
 
-            <section class="account-card delete-card">
-                <button class="account-button account-button--danger">
+        <section class="account-card delete-card">
+            <form action="{{ path('app_account_delete') }}" method="post">
+                <button type="submit" class="account-button account-button--danger">
                     Supprimer mon compte
                 </button>
-            </section>
+            </form>
+        </section>
 
-        </div>
-    </section>
+    </div>
+</section>
 {% endblock %}

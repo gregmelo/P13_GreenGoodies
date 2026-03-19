@@ -7,13 +7,13 @@
         <div class="login-container">
             <div class="login-illustration">
                 {# Tu mettras ton image ici plus tard, par exemple : #}
-                <img src="{{ asset('assets/login.webp') }}" alt="Illustration connexion">
+                <img src="{{ asset('assets/login.webp') }}" alt="">
             </div>
 
             <div class="login-form-wrapper">
                 <h1>Connexion</h1>
             {% if error %}
-                <div class="form-error">
+                <div class="form-error" role="alert">
                     {{ error.messageKey|trans(error.messageData, 'security') }}
                 </div>
             {% endif %}

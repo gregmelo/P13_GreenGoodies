@@ -3,54 +3,63 @@
 {% block title %}Panier - Green Goodies{% endblock %}
 
 {% block body %}
-    <section class="cart-page">
-        <div class="cart-container">
-            <div class="cart-header">
-                <h1>Mon panier</h1>
-                <a href="#" class="cart-clear">x Vider le panier</a>
-            </div>
+<section class="cart-page">
+    <div class="cart-container">
+        <div class="cart-header">
+            <h1>Mon panier</h1>
+            {% if cartItems is not empty %}
+                <a href="{{ path('app_cart_clear') }}" class="cart-clear">x Vider le panier</a>
+            {% endif %}
+        </div>
+
+        {% if cartItems is empty %}
+            <p>Votre panier est vide.</p>
+        {% else %}
             <div class="cart-items">
-                <article class="cart-item">
-                    <div class="cart-item-image">
-                        <img src="{{ asset('assets/products/savon_bio.webp') }}" alt="Savon Bio">
-                    </div>
-                    <div class="cart-item-info">
-                        <h2 class="cart-item-title">Savon Bio</h2>
-                        <p class="cart-item-quantity">Quantité : 1</p>
-                        <p class="cart-item-price">12,00 €</p>
-                    </div>
-                </article>
-
-                <article class="cart-item">
-                    <div class="cart-item-image">
-                        <img src="{{ asset('assets/products/gourde_bois.webp') }}" alt="Gourde en bois">
-                    </div>
-                    <div class="cart-item-info">
-                        <h2 class="cart-item-title">Gourde en bois</h2>
-                        <p class="cart-item-quantity">Quantité : 1</p>
-                        <p class="cart-item-price">15,00 €</p>
-                    </div>
-                </article>
-
-                {# Tu pourras plus tard boucler ici sur les vrais produits du panier #}
+                {% for item in cartItems %}
+                    <article class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="{{ asset('assets/products/' ~ item.product.picture) }}" alt="{{ item.product.name }}">
+                        </div>
+                        <div class="cart-item-info">
+                            <h2 class="cart-item-title">{{ item.product.name }}</h2>
+                            <p class="cart-item-quantity">Quantité : {{ item.quantity }}</p>
+                            <p class="cart-item-price">
+                                Prix unitaire :
+                                {{ item.product.price|number_format(2, ',', ' ') }} €
+                            </p>
+                            <p class="cart-item-price">
+                                Total :
+                                {{ item.lineTotal|number_format(2, ',', ' ') }} €
+                            </p>
+                        </div>
+                    </article>
+                {% endfor %}
             </div>
 
             <div class="cart-summary">
                 <div class="cart-summary-row total">
                     <span>Total panier</span>
-                    <span>33,50 €</span>
+                    <span>{{ cartTotal|number_format(2, ',', ' ') }} €</span>
                 </div>
                 <div class="cart-summary-row shipping-costs">
                     <span>Frais de livraison</span>
-                    <span>4,50 €</span>
+                    <span>{{ shipping|number_format(2, ',', ' ') }} €</span>
+                </div>
+                <div class="cart-summary-row total">
+                    <span>Total à payer</span>
+                    <span>{{ (cartTotal + shipping)|number_format(2, ',', ' ') }} €</span>
                 </div>
             </div>
 
             <div class="cart-actions">
-                <button class="cart-validate">
-                    Valider la commande
-                </button>
+                <form action="{{ path('app_cart_validate') }}" method="post">
+                    <button type="submit" class="cart-validate">
+                        Valider la commande
+                    </button>
+                </form>
             </div>
-        </div>
-    </section>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}

@@ -3,6 +3,13 @@
 @import './_login-register.css';
 @import './_cart.css';
 @import './_account.css';
+@import './_404.css';
+
+
+html,
+body {
+    height: 100%;
+}
 
 body {
     margin: 0;
@@ -10,6 +17,12 @@ body {
     color: #333333;
     font-family: "Inter", sans-serif;
     background-color: #FFFDF7;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-main {
+    flex: 1 0 auto;
 }
 
 /* Header */
@@ -41,6 +54,27 @@ header {
 .main-nav a:hover {
     color: #666666;
     font-weight: 500;
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background-color: #333;
+    color: #fffdf7;
+    padding: 8px 16px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    left: 16px;
+    top: 16px;
+}
+
+a:focus,
+button:focus {
+    outline: 2px solid #333333;
+    outline-offset: 2px;
 }
 
 /* Hero */
@@ -243,4 +277,5 @@ footer {
     display: flex;
     justify-content: end;
     align-items: center;
+    flex-shrink: 0;
 }
