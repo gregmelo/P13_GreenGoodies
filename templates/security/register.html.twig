@@ -14,48 +14,51 @@
                 <h1>Inscription</h1>
                 <p class="register-info">Tous les champs sont obligatoires.</p>
 
-                <form class="register-form" action="#" method="post">
+                {{ form_start(registrationForm, {'attr': {'class': 'register-form'}}) }}
                     <div class="form-group">
-                        <label for="lastname">Nom</label>
-                        <input type="text" id="lastname" name="lastname">
+                        {{ form_label(registrationForm.lastName) }}
+                        {{ form_widget(registrationForm.lastName) }}
+                        {{ form_errors(registrationForm.lastName) }}
                     </div>
 
                     <div class="form-group">
-                        <label for="firstname">Prénom</label>
-                        <input type="text" id="firstname" name="firstname">
+                        {{ form_label(registrationForm.firstName) }}
+                        {{ form_widget(registrationForm.firstName) }}
+                        {{ form_errors(registrationForm.firstName) }}
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Adresse e-mail</label>
-                        <input type="email" id="email" name="email">
+                        {{ form_label(registrationForm.email) }}
+                        {{ form_widget(registrationForm.email) }}
+                        {{ form_errors(registrationForm.email) }}
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password">
+                        {{ form_label(registrationForm.plainPassword.first) }}
+                        {{ form_widget(registrationForm.plainPassword.first) }}
+                        {{ form_errors(registrationForm.plainPassword.first) }}
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirmer le mot de passe</label>
-                        <input type="password" id="password_confirm" name="password_confirm">
+                        {{ form_label(registrationForm.plainPassword.second) }}
+                        {{ form_widget(registrationForm.plainPassword.second) }}
+                        {{ form_errors(registrationForm.plainPassword.second) }}
                     </div>
 
                     <div class="form-group register-terms">
-                        <label>
-                            <input type="checkbox" name="terms">
-                            J’accepte les CGU de GreenGoodies
-                        </label>
+                        {{ form_widget(registrationForm.terms) }}
+                        {{ form_label(registrationForm.terms) }}
+                        {{ form_errors(registrationForm.terms) }}
                     </div>
 
                     <button type="submit" class="register-submit">
                         S'inscrire
                     </button>
+                {{ form_end(registrationForm) }}
 
-                    <p class="register-extra">
-                        <a href="{{ path('app_login') }}">
-                        Déjà un compte ? Se connecter</a>
-                    </p>
-                </form>
+                <p class="register-extra">
+                    <a href="{{ path('app_login') }}">Déjà un compte ? Se connecter</a>
+                </p>
             </div>
         </div>
     </section>

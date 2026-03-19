@@ -76,6 +76,10 @@
     gap: 10px;
 }
 
+.register-form-wrapper .form-group.register-terms {
+    flex-direction: row !important;
+}
+
 .login-form label, 
 .register-form label {
     font-size: 14px;
@@ -125,16 +129,30 @@
 }
 
 .login-form p, 
-.register-form p {
+.register-extra {
     margin: 0;
     font-size: 14px;
     color: #666666;
     text-align: center;
 }
 
+.register-extra {
+    margin-top: 27px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    max-width: 479px;
+}
+
 .login-form p a, 
-.register-form p a {
+.register-extra a {
     color: #666666;
     text-decoration: none;
     font-weight: 400;
+}
+
+.form-error {
+    color: red;
+    font-size: 12px;
+    margin: 8px 0;
 }

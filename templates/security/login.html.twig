@@ -12,11 +12,14 @@
 
             <div class="login-form-wrapper">
                 <h1>Connexion</h1>
+                {% if error %}
+                    <div class="form-error">Identifiants incorrects</div>
+                {% endif %}
 
-                <form class="login-form" action="#" method="post">
+                <form class="login-form" action="{{ path('app_login') }}" method="post">
                     <div class="form-group">
                         <label for="email">Adresse e-mail</label>
-                        <input type="email" id="email" name="email">
+                        <input type="email" id="email" name="email" value="{{ last_username }}">
                     </div>
 
                     <div class="form-group">
@@ -24,10 +27,12 @@
                         <input type="password" id="password" name="password">
                     </div>
 
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
                     <button type="submit" class="login-submit">
                         Se connecter
                     </button>
-                    <p><a href="#">Pas encore de compte ? S’inscrire</a></p>
+                    <p><a href="{{ path('app_register') }}">Pas encore de compte ? S’inscrire</a></p>
                 </form>
             </div>
         </div>
