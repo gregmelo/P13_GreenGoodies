@@ -14,41 +14,59 @@
                 <h1>Inscription</h1>
                 <p class="register-info">Tous les champs sont obligatoires.</p>
 
-                {{ form_start(registrationForm, {'attr': {'class': 'register-form'}}) }}
+                {{ form_start(registrationForm, {'attr': {'class': 'register-form', 'data-turbo': 'false'}}) }}
+                    {% set lastNameErrors = form_errors(registrationForm.lastName) %}
                     <div class="form-group">
                         {{ form_label(registrationForm.lastName) }}
                         {{ form_widget(registrationForm.lastName) }}
-                        {{ form_errors(registrationForm.lastName) }}
+                        {% if lastNameErrors %}
+                            <div class="form-error">{{ lastNameErrors }}</div>
+                        {% endif %}
                     </div>
 
+                    {% set firstNameErrors = form_errors(registrationForm.firstName) %}
                     <div class="form-group">
                         {{ form_label(registrationForm.firstName) }}
                         {{ form_widget(registrationForm.firstName) }}
-                        {{ form_errors(registrationForm.firstName) }}
+                        {% if firstNameErrors %}
+                            <div class="form-error">{{ firstNameErrors }}</div>
+                        {% endif %}
                     </div>
 
+                    {% set emailErrors = form_errors(registrationForm.email) %}
                     <div class="form-group">
                         {{ form_label(registrationForm.email) }}
                         {{ form_widget(registrationForm.email) }}
-                        {{ form_errors(registrationForm.email) }}
+                        {% if emailErrors %}
+                            <div class="form-error">{{ emailErrors }}</div>
+                        {% endif %}
                     </div>
 
+                    {% set passwordErrors = form_errors(registrationForm.plainPassword.first) %}
                     <div class="form-group">
                         {{ form_label(registrationForm.plainPassword.first) }}
                         {{ form_widget(registrationForm.plainPassword.first) }}
-                        {{ form_errors(registrationForm.plainPassword.first) }}
+                        {% if passwordErrors %}
+                            <div class="form-error">{{ passwordErrors }}</div>
+                        {% endif %}
                     </div>
 
+                    {% set passwordConfirmErrors = form_errors(registrationForm.plainPassword.second) %}
                     <div class="form-group">
                         {{ form_label(registrationForm.plainPassword.second) }}
                         {{ form_widget(registrationForm.plainPassword.second) }}
-                        {{ form_errors(registrationForm.plainPassword.second) }}
+                        {% if passwordConfirmErrors %}
+                            <div class="form-error">{{ passwordConfirmErrors }}</div>
+                        {% endif %}
                     </div>
 
+                    {% set termsErrors = form_errors(registrationForm.terms) %}
                     <div class="form-group register-terms">
                         {{ form_widget(registrationForm.terms) }}
                         {{ form_label(registrationForm.terms) }}
-                        {{ form_errors(registrationForm.terms) }}
+                        {% if termsErrors %}
+                            <div class="form-error">{{ termsErrors }}</div>
+                        {% endif %}
                     </div>
 
                     <button type="submit" class="register-submit">

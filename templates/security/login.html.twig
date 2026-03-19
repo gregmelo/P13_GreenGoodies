@@ -12,9 +12,11 @@
 
             <div class="login-form-wrapper">
                 <h1>Connexion</h1>
-                {% if error %}
-                    <div class="form-error">Identifiants incorrects</div>
-                {% endif %}
+            {% if error %}
+                <div class="form-error">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
 
                 <form class="login-form" action="{{ path('app_login') }}" method="post">
                     <div class="form-group">

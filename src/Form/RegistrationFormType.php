@@ -22,20 +22,31 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Nom',
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez saisir votre nom.']),
+                    new Assert\Length([
+                        'min' => 2,
+                        'max' => 100,
+                        'minMessage' => 'Ce champ doit contenir au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Ce champ ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
                 ],
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'Prénom',
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez saisir votre prénom.']),
+                    new Assert\Length([
+                        'min' => 2,
+                        'max' => 100,
+                        'minMessage' => 'Ce champ doit contenir au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Ce champ ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresse e-mail',
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez saisir votre adresse e-mail.']),
-                    new Assert\Regex([
-                        'pattern' => '/^[^@]+@[^@]+\.[^@]+$/',
+                    new Assert\Email([
                         'message' => 'Cette adresse e-mail n’est pas valide.',
                     ]),
                 ],
@@ -55,6 +66,10 @@ class RegistrationFormType extends AbstractType
                     new Assert\Length([
                         'min' => 8,
                         'minMessage' => 'Le mot de passe doit contenir au moins {{ limit }} caractères.',
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+$/',
+                        'message' => 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.',
                     ]),
                 ],
             ])
