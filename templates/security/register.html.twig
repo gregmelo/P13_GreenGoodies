@@ -20,7 +20,7 @@
                         {{ form_label(registrationForm.lastName) }}
                         {{ form_widget(registrationForm.lastName) }}
                         {% if lastNameErrors %}
-                            <div class="form-error">{{ lastNameErrors }}</div>
+                            <div class="form-error">{{ form_errors(registrationForm.lastName) }}</div>
                         {% endif %}
                     </div>
 
@@ -29,7 +29,7 @@
                         {{ form_label(registrationForm.firstName) }}
                         {{ form_widget(registrationForm.firstName) }}
                         {% if firstNameErrors %}
-                            <div class="form-error">{{ firstNameErrors }}</div>
+                            <div class="form-error">{{ form_errors(registrationForm.firstName) }}</div>
                         {% endif %}
                     </div>
 
@@ -38,7 +38,7 @@
                         {{ form_label(registrationForm.email) }}
                         {{ form_widget(registrationForm.email) }}
                         {% if emailErrors %}
-                            <div class="form-error">{{ emailErrors }}</div>
+                            <div class="form-error">{{ form_errors(registrationForm.email) }}</div>
                         {% endif %}
                     </div>
 
@@ -47,7 +47,7 @@
                         {{ form_label(registrationForm.plainPassword.first) }}
                         {{ form_widget(registrationForm.plainPassword.first) }}
                         {% if passwordErrors %}
-                            <div class="form-error">{{ passwordErrors }}</div>
+                            <div class="form-error">{{ form_errors(registrationForm.plainPassword.first) }}</div>
                         {% endif %}
                     </div>
 
@@ -56,7 +56,7 @@
                         {{ form_label(registrationForm.plainPassword.second) }}
                         {{ form_widget(registrationForm.plainPassword.second) }}
                         {% if passwordConfirmErrors %}
-                            <div class="form-error">{{ passwordConfirmErrors }}</div>
+                            <div class="form-error">{{ form_errors(registrationForm.plainPassword.second) }}</div>
                         {% endif %}
                     </div>
 
@@ -65,7 +65,7 @@
                         {{ form_widget(registrationForm.terms) }}
                         {{ form_label(registrationForm.terms) }}
                         {% if termsErrors %}
-                            <div class="form-error">{{ termsErrors }}</div>
+                            <div class="form-error">{{ form_errors(registrationForm.terms) }}</div>
                         {% endif %}
                     </div>
 

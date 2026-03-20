@@ -11,6 +11,7 @@ use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Form\LoginFormType;
 
 final class SecurityController extends AbstractController
 {
@@ -24,9 +25,14 @@ final class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        $form = $this->createForm(LoginFormType::class);
+        // On pré-remplit le champ email avec le dernier identifiant utilisé
+        $form->get('email')->setData($lastUsername);
+
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
+            'loginForm' => $form->createView(),
         ]);
     }
 

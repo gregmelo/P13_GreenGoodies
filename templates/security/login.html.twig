@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion - Green Goodies{% endblock %}
+{% block title %}
+    Connexion - Green Goodies
+{% endblock %}
 
 {% block body %}
     <section class="login-page">
@@ -12,30 +14,31 @@
 
             <div class="login-form-wrapper">
                 <h1>Connexion</h1>
-            {% if error %}
-                <div class="form-error" role="alert">
-                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                {% if error %}
+                    <div class="form-error" role="alert">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                {{ form_start(loginForm, {action: path('app_login'),attr: {'class': 'login-form'}}
+                ) }}
+                <div class="form-group">
+                    {{ form_label(loginForm.email) }}
+                    {{ form_widget(loginForm.email) }}
                 </div>
-            {% endif %}
 
-                <form class="login-form" action="{{ path('app_login') }}" method="post">
-                    <div class="form-group">
-                        <label for="email">Adresse e-mail</label>
-                        <input type="email" id="email" name="email" value="{{ last_username }}">
-                    </div>
+                <div class="form-group">
+                    {{ form_label(loginForm.password) }}
+                    {{ form_widget(loginForm.password) }}
+                </div>
 
-                    <div class="form-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password">
-                    </div>
+                {{ form_rest(loginForm) }}
 
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                    <button type="submit" class="login-submit">
-                        Se connecter
-                    </button>
-                    <p><a href="{{ path('app_register') }}">Pas encore de compte ? S’inscrire</a></p>
-                </form>
+                <button type="submit" class="login-submit">
+                    Se connecter
+                </button>
+                <p><a href="{{ path('app_register') }}">Pas encore de compte ? S’inscrire</a></p>
+                {{ form_end(loginForm) }}
             </div>
         </div>
     </section>
