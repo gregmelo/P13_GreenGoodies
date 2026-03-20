@@ -12,8 +12,18 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Contrôleur de l'espace compte utilisateur (commandes, accès API, suppression).
+ */
 final class AccountController extends AbstractController
 {
+    /**
+     * Affiche le tableau de bord du compte avec la liste des commandes.
+     *
+     * @param OrderRepository $orderRepository Repository des commandes
+     *
+     * @return Response Réponse HTML de la page compte
+     */
     #[Route('/account', name: 'app_account')]
     #[IsGranted('ROLE_USER')]
     public function index(OrderRepository $orderRepository): Response
@@ -33,6 +43,13 @@ final class AccountController extends AbstractController
         ]);
     }
 
+    /**
+     * Active ou désactive l'accès API pour l'utilisateur connecté.
+     *
+     * @param EntityManagerInterface $entityManager Gestionnaire d'entités Doctrine
+     *
+     * @return Response Redirection vers la page compte ou login
+     */
     #[Route('/account/api/toggle', name: 'app_account_api_toggle', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
     public function toggleApiAccess(EntityManagerInterface $entityManager): Response
@@ -55,6 +72,17 @@ final class AccountController extends AbstractController
         return $this->redirectToRoute('app_account');
     }
 
+    /**
+     * Supprime le compte utilisateur ainsi que ses commandes,
+     * puis le déconnecte proprement.
+     *
+     * @param EntityManagerInterface $entityManager Gestionnaire d'entités Doctrine
+     * @param OrderRepository        $orderRepository Repository des commandes
+     * @param TokenStorageInterface  $tokenStorage Stockage du token de sécurité
+     * @param RequestStack           $requestStack Pile de requêtes HTTP (pour la session)
+     *
+     * @return Response Redirection vers la page d'accueil ou de login
+     */
     #[Route('/account/delete', name: 'app_account_delete', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
     public function deleteAccount(

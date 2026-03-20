@@ -1,3 +1,4 @@
+{# Page panier : affiche le contenu du panier et le récapitulatif de commande #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Panier - Green Goodies{% endblock %}
@@ -12,6 +13,7 @@
             {% endif %}
         </div>
 
+        {# Si le panier est vide, on affiche un message dédié #}
         {% if cartItems is empty %}
             <p>Votre panier est vide.</p>
         {% else %}
@@ -37,6 +39,7 @@
                 {% endfor %}
             </div>
 
+            {# Récapitulatif des montants (panier, livraison, total) #}
             <div class="cart-summary">
                 <div class="cart-summary-row total">
                     <span>Total panier</span>

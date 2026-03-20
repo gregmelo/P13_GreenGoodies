@@ -1,3 +1,4 @@
+{# Page d'inscription : formulaire complet de création de compte #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription - Green Goodies{% endblock %}
@@ -6,7 +7,7 @@
     <section class="register-page">
         <div class="register-container">
             <div class="register-illustration">
-                {# Illustration d'inscription (image à adapter plus tard) #}
+                
                 <img src="{{ asset('assets/register.webp') }}" alt="">
             </div>
 
@@ -14,6 +15,7 @@
                 <h1>Inscription</h1>
                 <p class="register-info">Tous les champs sont obligatoires.</p>
 
+                {# Formulaire Symfony avec validations côté serveur #}
                 {{ form_start(registrationForm, {'attr': {'class': 'register-form', 'data-turbo': 'false'}}) }}
                     {% set lastNameErrors = form_errors(registrationForm.lastName) %}
                     <div class="form-group">

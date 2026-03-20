@@ -1,31 +1,35 @@
-        <header class="site-header">
-            <div class="logo">
-                <a href="{{ path('app_home') }}">
-                    <img src="{{ asset('assets/logo.svg') }}" alt="Green Goodies Logo">
+{# En-tête du site : logo, lien d'accès rapide et navigation principale #}
+<header class="site-header">
+    <div class="logo">
+        <a href="{{ path('app_home') }}">
+            <img src="{{ asset('assets/logo.svg') }}" alt="Green Goodies Logo">
+        </a>
+    </div>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    {# Menu principal : liens différents selon que l'utilisateur est connecté ou non #}
+    <nav class="main-nav" aria-label="Navigation principale">
+        <ul>
+            <li><a href="{{ path('app_home') }}#products">Nos produits</a></li>
+
+            {% if app.user %}
+                <li><a href="{{ path('app_cart') }}">Mon panier</a></li>
+                <li><a href="{{ path('app_account') }}">Mon compte</a></li>
+                <li>
+                    <a href="
+                    {{ path('app_logout') }}
+                    "
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Déconnexion
                 </a>
-            </div>
-            <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-
-            <nav class="main-nav" aria-label="Navigation principale">
-<ul>
-    <li><a href="{{ path('app_home') }}#products">Nos produits</a></li>
-
-    {% if app.user %}
-        <li><a href="{{ path('app_cart') }}">Mon panier</a></li>
-        <li><a href="{{ path('app_account') }}">Mon compte</a></li>
-        <li>
-            <a href="{{ path('app_logout') }}"
-               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Déconnexion
-            </a>
-            <form id="logout-form" action="{{ path('app_logout') }}" method="post" style="display:none;">
-                <input type="hidden" name="_token" value="{{ csrf_token('logout') }}">
-            </form>
-        </li>
-    {% else %}
-        <li><a href="{{ path('app_register') }}">Inscription</a></li>
-        <li><a href="{{ path('app_login') }}">Connexion</a></li>
-    {% endif %}
-</ul>
-            </nav>
-        </header>
+                <form id="logout-form" action="{{ path('app_logout') }}" method="post" style="display:none;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('logout') }}">
+                </form>
+            </li>
+        {% else %}
+            <li><a href="{{ path('app_register') }}">Inscription</a></li>
+            <li><a href="{{ path('app_login') }}">Connexion</a></li>
+        {% endif %}
+    </ul>
+</nav>
+</header>

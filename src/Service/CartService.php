@@ -6,6 +6,9 @@ use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Service de gestion du panier en session (ajout, lecture, total, frais de port).
+ */
 class CartService
 {
     private const CART_KEY = 'cart';
@@ -15,6 +18,13 @@ class CartService
         private ProductRepository $productRepository
     ) {}
 
+    /**
+     * Retourne la session courante à partir de la requête active.
+     *
+     * @throws \RuntimeException Si aucune requête courante n'est disponible
+     *
+     * @return SessionInterface Session HTTP courante
+     */
     private function getSession(): SessionInterface
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -26,6 +36,11 @@ class CartService
         return $request->getSession();
     }
 
+    /**
+     * Ajoute une unité du produit donné au panier stocké en session.
+     *
+     * @param int $productId Identifiant du produit à ajouter
+     */
     public function add(int $productId): void
     {
         $cart = $this->getSession()->get(self::CART_KEY, []);
@@ -35,11 +50,19 @@ class CartService
         $this->getSession()->set(self::CART_KEY, $cart);
     }
 
+    /**
+     * Vide complètement le panier de la session.
+     */
     public function clear(): void
     {
         $this->getSession()->remove(self::CART_KEY);
     }
 
+    /**
+     * Retourne les lignes du panier avec le produit, la quantité et le total de ligne.
+     *
+     * @return array<int, array{product: mixed, quantity: int, lineTotal: float}>
+     */
     public function getItems(): array
     {
         $cart = $this->getSession()->get(self::CART_KEY, []);
@@ -62,6 +85,9 @@ class CartService
         return $items;
     }
 
+    /**
+     * Calcule le total du panier (hors frais de livraison).
+     */
     public function getTotal(): float
     {
         $total = 0;
@@ -73,6 +99,9 @@ class CartService
         return $total;
     }
 
+    /**
+     * Retourne le montant des frais de livraison.
+     */
     public function getShipping(): float
     {
         // frais de livraison fixes pour cette version

@@ -1,3 +1,4 @@
+{# Page de détail d'un produit (visuel, description, ajout au panier) #}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ product.name }} - Green Goodies{% endblock %}
@@ -17,6 +18,7 @@
                 <p class="long-description">
                     {{ product.fullDescription|nl2br }}
                 </p>
+                {# Si l'utilisateur est connecté, on lui propose d'ajouter au panier #}
                 {% if app.user %}
                     <a href="{{ path('app_cart_add', { id: product.id }) }}" class="product-btn">
                         Ajouter au panier

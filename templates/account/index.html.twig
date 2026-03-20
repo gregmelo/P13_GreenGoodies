@@ -1,3 +1,4 @@
+{# Page compte : historique des commandes, accès API et suppression de compte #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Mon compte - Green Goodies{% endblock %}
@@ -8,6 +9,7 @@
 
         <h1 class="account-title">Mon compte</h1>
 
+        {# Bloc listant les commandes de l'utilisateur connecté #}
         <section class="account-card orders-card">
             <h2 class="account-card-title">Mes commandes</h2>
             <table class="account-orders-table">
@@ -36,6 +38,7 @@
             </table>
         </section>
 
+        {# Bloc permettant d'activer / désactiver l'accès API #}
         <section class="account-card api-card">
             <h2 class="account-card-title">Mon accès API</h2>
                 <form action="{{ path('app_account_api_toggle') }}" method="post">
@@ -51,6 +54,7 @@
                 </form>
         </section>
 
+        {# Formulaire de suppression de compte (et des commandes associées) #}
         <section class="account-card delete-card">
             <form action="{{ path('app_account_delete') }}" method="post">
                 <button type="submit" class="account-button account-button--danger">

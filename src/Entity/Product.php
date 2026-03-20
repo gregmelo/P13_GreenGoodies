@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Représente un produit vendable sur Green Goodies.
+ */
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {

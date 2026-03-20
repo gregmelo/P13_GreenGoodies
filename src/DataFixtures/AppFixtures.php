@@ -7,9 +7,17 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
+/**
+ * Charge des données de démonstration (produits) en base de données.
+ */
 class AppFixtures extends Fixture
 {
 
+    /**
+     * Crée une série de produits prédéfinis et les persiste.
+     *
+     * @param ObjectManager $manager Gestionnaire d'entités fourni par Doctrine Fixtures
+     */
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
@@ -93,6 +101,7 @@ Sa mousse onctueuse nettoie la peau en douceur et laisse un parfum chaud et épi
             ],
         ];
 
+        // Pour chaque entrée de configuration, on instancie un Product
         foreach ($productsData as $data) {
             $product = new Product();
             $product->setName($data['name']);

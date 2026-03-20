@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\OrderItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Ligne d'une commande (produit, quantité, prix unitaire).
+ */
 #[ORM\Entity(repositoryClass: OrderItemRepository::class)]
 class OrderItem
 {

@@ -8,6 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Formulaire de connexion (email + mot de passe) utilisé par le firewall.
+ */
 class LoginFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -34,8 +37,8 @@ class LoginFormType extends AbstractType
     }
 
     public function getBlockPrefix(): string
-{
-    // Pas de préfixe "login_form[...]" dans les name=""
-    return '';
-}
+    {
+        // Pas de préfixe "login_form[...]" dans les name=""
+        return '';
+    }
 }
