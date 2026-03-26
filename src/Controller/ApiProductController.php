@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Contrôleur pour les routes produits de l'API.
@@ -28,9 +29,10 @@ class ApiProductController extends AbstractController
         Request $request,
         JwtService $jwtService,
         UserRepository $userRepository,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        SerializerInterface $serializer
     ): JsonResponse {
-        // 1) Récupération du header Authorization
+        // Récupération du header Authorization
         $authorizationHeader = $request->headers->get('Authorization');
 
         if (!$authorizationHeader || !str_starts_with($authorizationHeader, 'Bearer ')) {
@@ -42,10 +44,10 @@ class ApiProductController extends AbstractController
             // (Dans la vraie vie, tu pourrais mettre un message plus neutre)
         }
 
-        // 2) Extraction du token sans le préfixe "Bearer "
+        // Extraction du token sans le préfixe "Bearer "
         $token = substr($authorizationHeader, 7);
 
-        // 3) Décodage / validation du token
+        // Décodage / validation du token
         $payload = $jwtService->decodeToken($token);
 
         if ($payload === null) {
@@ -56,7 +58,7 @@ class ApiProductController extends AbstractController
             );
         }
 
-        // 4) Récupération de l'utilisateur à partir de l'ID contenu dans le token (champ "sub")
+        // Récupération de l'utilisateur à partir de l'ID contenu dans le token (champ "sub")
         $userId = $payload['sub'] ?? null;
 
         if ($userId === null) {
@@ -77,7 +79,7 @@ class ApiProductController extends AbstractController
             );
         }
 
-        // 5) Vérifie que l'accès API est toujours activé
+        // Vérifie que l'accès API est toujours activé
         if (!$user->isApiAccess()) {
             // Même logique que pour /api/login -> 403
             return new JsonResponse(
@@ -86,24 +88,15 @@ class ApiProductController extends AbstractController
             );
         }
 
-        // 6) Récupération de tous les produits
+        // Récupération de tous les produits
         $products = $productRepository->findAll();
 
-        // 7) Transformation des entités Product en tableau simple pour le JSON
-        $data = [];
+        // Sérialisation avec le Serializer Symfony
+        $json = $serializer->serialize($products, 'json', [
+            'groups' => ['product:list'],
+        ]);
 
-        foreach ($products as $product) {
-            $data[] = [
-                'id' => $product->getId(),
-                'name' => $product->getName(),
-                'shortDescription' => $product->getShortDescription(),
-                'fullDescription' => $product->getFullDescription(),
-                'price' => $product->getPrice(),
-                'picture' => $product->getPicture(),
-            ];
-        }
-
-        // 8) Réponse 200 avec "Tableau de Product" comme demandé par la spec
-        return new JsonResponse($data, Response::HTTP_OK);
+        // Réponse 200 avec JSON déjà sérialisé
+        return new JsonResponse($json, Response::HTTP_OK, [], true);
     }
 }

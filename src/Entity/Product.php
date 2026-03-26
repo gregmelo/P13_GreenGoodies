@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 /**
  * Représente un produit vendable sur Green Goodies.
@@ -17,21 +18,27 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['product:list'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:list'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:list'])]
     private ?string $shortDescription = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['product:list'])]
     private ?string $fullDescription = null;
 
     #[ORM\Column]
+    #[Groups(['product:list'])]
     private ?float $price = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['product:list'])]
     private ?string $picture = null;
 
     /**
